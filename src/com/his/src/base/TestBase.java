@@ -59,5 +59,9 @@ public class TestBase {
 		driver.findElement(By.xpath("//button[@id='details-button']")).click();
 		driver.findElement(By.xpath("//a[@id='proceed-link']")).click();
 	}
+	public static String getProperty(String key) 
+	{
+		return prop.getProperty(key);
+	}
 }
 

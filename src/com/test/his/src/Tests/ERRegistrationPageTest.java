@@ -32,7 +32,9 @@ public class ERRegistrationPageTest extends TestBase{
 	@Test(priority = 1)
 	public void newERPatientRegistration() throws InterruptedException {
 		
-		erRegistrationPage.clickOnTitleDropDown("1","Automation", "Testing", "Patient", "Others");
+		erRegistrationPage.selectPatientTitle("1");
+		erRegistrationPage.enterFirstName("Test"+com.his.src.util.TestUtil.getRandomNum(1, 10000),"");
+		erRegistrationPage.clickOnTitleDropDown("Testing", "Patient", "Others");
 		erRegistrationPage.enterReferredBy("self");
 		erRegistrationPage.fillAgeByRadioButton("25","AutoFather","2","Testing address for this patient");
 		erRegistrationPage.selectCityDropDown("2857");

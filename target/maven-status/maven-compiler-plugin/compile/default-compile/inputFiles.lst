@@ -1,14 +1,16 @@
-D:\New folder\TrioAutomation-master\src\com\test\his\src\Tests\ERRegistrationPageTest.java
-D:\New folder\TrioAutomation-master\src\com\test\his\src\Tests\LoginPageTest.java
-D:\New folder\TrioAutomation-master\src\com\his\src\util\ListenerClass.java
-D:\New folder\TrioAutomation-master\src\com\his\src\util\TestUtil.java
-D:\New folder\TrioAutomation-master\src\com\main\his\src\Pages\LoginPage.java
-D:\New folder\TrioAutomation-master\src\com\his\src\util\ExtentReportListener.java
-D:\New folder\TrioAutomation-master\src\com\main\his\src\Pages\DischargeSummaryPage.java
-D:\New folder\TrioAutomation-master\src\com\test\his\src\Tests\HomePageTest.java
-D:\New folder\TrioAutomation-master\src\com\test\his\src\Tests\UpdateERRegisteredPatientDetailsTest.java
-D:\New folder\TrioAutomation-master\src\com\his\src\base\TestBase.java
-D:\New folder\TrioAutomation-master\src\com\main\his\src\Pages\GeneralItemPage.java
-D:\New folder\TrioAutomation-master\src\com\main\his\src\Pages\HomePage.java
-D:\New folder\TrioAutomation-master\src\com\main\his\src\Pages\ERRegistrationPage.java
-D:\New folder\TrioAutomation-master\src\com\main\his\src\Pages\NursingActivityPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\his\src\util\ExtentReportListener.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\GeneralItemPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\ERRegistrationPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\test\his\src\Tests\LoginPageTest.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\LoginPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\his\src\base\TestBase.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\DepositAndRefundPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\test\his\src\Tests\HomePageTest.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\HomePage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\NursingActivityPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\test\his\src\Tests\DepositRefundTest.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\his\src\util\TestUtil.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\main\his\src\Pages\DischargeSummaryPage.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\his\src\util\ListenerClass.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\test\his\src\Tests\ERRegistrationPageTest.java
+C:\Users\ankit\eclipse-workspace\TrioAutomation-master\src\com\test\his\src\Tests\UpdateERRegisteredPatientDetailsTest.java

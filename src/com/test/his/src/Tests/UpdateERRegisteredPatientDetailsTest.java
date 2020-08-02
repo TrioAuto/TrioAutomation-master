@@ -32,7 +32,9 @@ public class UpdateERRegisteredPatientDetailsTest extends TestBase {
 		erRegistrationPage.enterRegisteredPatientERNo(prop.getProperty("ERNo"));
 		erRegistrationPage.modifyPateintDetails("UpdatedFirstName", "UpdatedLastName", "This is modify reason");
 		erRegistrationPage.selectRequestedbedtype("Single");
-		erRegistrationPage.selectBillableBedType("Single");
+		//erRegistrationPage.selectBillableBedType("Single");
 		erRegistrationPage.selectAllotedBedType();
+		erRegistrationPage.fillNextOfKinDetails("KinTesting", "EmergencyTesting", "12345678910", "Automation","Testing");
+		erRegistrationPage.selectSaveButton();
 	}
 }

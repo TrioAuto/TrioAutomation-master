@@ -3,7 +3,9 @@ package com.his.src.base;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -59,9 +61,33 @@ public class TestBase {
 		driver.findElement(By.xpath("//button[@id='details-button']")).click();
 		driver.findElement(By.xpath("//a[@id='proceed-link']")).click();
 	}
-	public static String getProperty(String key) 
-	{
-		return prop.getProperty(key);
+	
+	public static void clickOnPrintAndHandleAnotherPopUpWindow() throws InterruptedException {
+
+		Set<String>	handler = driver.getWindowHandles();
+		if(handler.size()>1) 
+		{
+			Iterator<String> it = handler.iterator();
+			while(it.hasNext()) {
+				String parentWindowId=it.next();
+				System.out.println("parent window id :"+parentWindowId);
+				String childWindowId=it.next();
+				try {
+					driver.switchTo().window(childWindowId);
+					System.out.println("chiled window Id :"+childWindowId);
+					Thread.sleep(5000);
+					driver.close();
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				driver.switchTo().window(parentWindowId);
+				Thread.sleep(5000);
+				System.out.println("parent window title :"+driver.getTitle());
+			}
+		}
+
 	}
 }
 

@@ -1,6 +1,7 @@
 package com.main.his.src.Pages;
 
 
+import java.awt.Label;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -83,6 +84,15 @@ public class ERRegistrationPage extends TestBase {
 	WebElement MAIN_SAVE_BUTTON;
 	@FindBy(xpath="//a[@id='btnSave_Data']")
 	WebElement SAVE_YES_OPTION;
+	@FindBy(xpath="//a[@id='btnEmergencyReg']")
+	WebElement ER_NO_OK_BUTTON;
+	@FindBy(xpath="//a[@id='btnsavePrintNO']")
+	WebElement Select_Yes_OPTION;
+	@FindBy(xpath="//a[@id='PopPrintClose']//i")
+	WebElement PRINT_CANCEL_BUTTON;
+
+	//Update details and admit as ip xpath 
+//-----------------------------------------------------------------------------------
 	@FindBy(xpath="//input[@id='ERNo']")
 	WebElement ER_NO_TEXT_BOX;
 	@FindBy(xpath="//i[@class='fa fa-pencil-square']")
@@ -101,18 +111,40 @@ public class ERRegistrationPage extends TestBase {
 	WebElement WARD_FROM_POP_UP;
 	@FindBy(xpath="//select[@id='popdrpBed']")
 	WebElement BED_FROM_POP_UP;
-	boolean found=false;
+	@FindBy(xpath="//a[@id='PopSaveEmergencyPatient']//i")
+	WebElement POP_UP_SAVE_BUTTON;
+    @FindBy(xpath="//a[contains(text(),'Next Of Kin')]")
+    WebElement NEXT_OF_KIN_FROM_POP_UP;
+    @FindBy(xpath="//input[@id='txtname']")
+    WebElement KIN_DETAIL_NAME;
+    @FindBy(xpath="//input[@id='popchekkCopy']")
+    WebElement Copy_From_Present_Address;
+    @FindBy(xpath="//input[@id='poptxtName']")
+    WebElement KIN_EMERGENCY_CONTACT_NAME;
+    @FindBy(xpath="//input[@id='EmergencypoptxtPNo']")
+    WebElement KIN_EMERGENCY_PHONE_NO;
+    @FindBy(xpath="//input[@id='popBCDone']")
+    WebElement KIN_COUNSELLING_BILLING_COUNSELLING_DONE;
+    @FindBy(xpath="//input[@id='popCCDone']")
+    WebElement KIN_CLINICAL_COUNSELLING_DONE_TO;
+    @FindBy(xpath="//a[@id='PatientAdmitIPID']")
+    WebElement CLICK_ON_OK;
+    
 
-
-	String Bed_Name=TestBase.getProperty("bedname");
+	
 
 	public ERRegistrationPage() {
 		PageFactory.initElements(driver, this);
 	}
-	public void clickOnTitleDropDown(String title,String first,String middle,String last,String gen) {
+	public void selectPatientTitle(String title) {
 		Select select=new Select (TITLE_DROP_DOWN);
 		select.selectByValue(title);
+	}
+	public void enterFirstName(String first, String string) {
 		fname.sendKeys(first);
+	}
+	public void clickOnTitleDropDown(String middle,String last,String gen) {
+		
 		mname.sendKeys(middle);
 		lname.sendKeys(last);
 		Select sex=new Select(gender);
@@ -191,6 +223,12 @@ public class ERRegistrationPage extends TestBase {
 		MAIN_SAVE_BUTTON.click();
 		Thread.sleep(5000);
 		SAVE_YES_OPTION.click();
+		Thread.sleep(4000);
+		ER_NO_OK_BUTTON.click();
+		Thread.sleep(3500);
+		Select_Yes_OPTION.click();
+		Thread.sleep(4000);
+		PRINT_CANCEL_BUTTON.click();
 	}
 	public void enterRegisteredPatientERNo(String erno) {
 		ER_NO_TEXT_BOX.sendKeys(erno);
@@ -219,101 +257,83 @@ public class ERRegistrationPage extends TestBase {
 		ADMIT_AS_IP.click();
 		PENDING_ORDER_RETUEN_POP_UP.click();
 	}
-	public void selectRequestedbedtype(String rbed) {
+	public void selectRequestedbedtype(String rbed) 
+	{
 		Select select=new Select(REQUESTED_BED_TYPE_FROM_POP_UP);
 		select.selectByVisibleText(rbed);
+		System.out.println("Select the requested bed :"+rbed);
 	}
-	public void selectBillableBedType(String bbed) {
-		Select select=new Select(BILLABLE_BED_TYPE_FROM_POP_UP);
-		select.selectByVisibleText(bbed);
-		log.info("Selected Billiable bed type: " +bbed);
-	}
-	public void selectAllotedBedType() {
+
+	public void selectAllotedBedType() 
+	{
 		Select select=new Select(ALLOTED_BED_TYPE_FROM_POP_UP);
-		if(select.getOptions().size()>0) {
-			List<WebElement> element=select.getOptions();
-			for(int i=0;i<element.size();i++) {
-				select.selectByIndex(i);
-				//ward method call
-				selectward();
-			}
-
-		}
-
-	}
-
-	public void selectward() {
-		Select s1=new Select(WARD_FROM_POP_UP);
-		List<WebElement> wardlist = s1.getOptions();
-		for(int j=0;j<wardlist.size();j++) {
-			s1.selectByIndex(j);
-
-			Select s2=new Select(BED_FROM_POP_UP);
-			List<WebElement> bed_list = s2.getOptions();
-			for(int i=0;i<bed_list.size();i++) 
-			{
-				if(!bed_list.get(i).getText().isEmpty()) { 
-					s2.selectByVisibleText( bed_list.get(i).getText());
-					found=true;
-					break;
-				}
-
-			}
-			if(found==true) {
-				break;
-			}
-		}
-	}
-	public void selectWardFromDropDown() {
-		Select select=new Select(WARD_FROM_POP_UP);
-		if(select.getOptions().size()>0) {
-
-			List<WebElement> option_text=select.getOptions();
-			for(int i=0;i<option_text.size();i++) {
-
-				WebElement selectValueFromDropDown=option_text.get(i);
-				if(!selectValueFromDropDown.getText().isEmpty()) {
-
-					log.info("Ward Type= "+select.getFirstSelectedOption().getText()+" is selected");
-					break;
-				}
-				if(selectValueFromDropDown.getText().isEmpty()) {
-					log.info("Ward Type is Null");
-				}
-			}
-		}
-	}
-	public void selectBedType() throws InterruptedException {
-		Select sl=new Select(BED_FROM_POP_UP);
-		if(sl.getOptions().size()>0) 
+		if(select.getOptions().size()>0) 
 		{
-			log.info("Bed Option size= "+sl.getOptions().size());
-
-			List<WebElement> option_text = sl.getOptions();
-			for(int k=0;k<option_text.size();k++) 
-			{
-				WebElement selectedValueInDropDown = option_text.get(k);
-				if(!selectedValueInDropDown.getText().isEmpty()) 
+			List<WebElement> element=select.getOptions();
+			///AllotedBedType:
+				for(int i=1;i<=element.size();i++)
 				{
-					if(selectedValueInDropDown.getText().equals(Bed_Name))
-					{
-						sl.selectByVisibleText(Bed_Name);
-					}
-					else {
+					select.selectByIndex(i);
+					System.out.println("Alloted bed type selected ");
+					Select s1=new Select(WARD_FROM_POP_UP);
+					List<WebElement> element2=s1.getOptions();
 
-						sl.selectByVisibleText(Bed_Name);
-					}
-					Thread.sleep(2000);
-					log.info("Bed Type= "+Bed_Name+" is selected");
 
+					///WardType:
+						for(int j=0;j<element2.size();j++)
+						{
+							if(!s1.getOptions().isEmpty()) 
+							{
+								s1.selectByIndex(j);
+								System.out.println("ward should be selected="+j);
+								Select s2=new Select(BED_FROM_POP_UP);
+								if(!s2.getOptions().isEmpty()) {
+									System.out.println("bed is selected:"+s2.getOptions());
+									break;
+								}
+								else if(s2.getOptions().isEmpty()) {
+									System.out.println("bed is not selected");
+								}
+							}
+						
+						}
+						break;
 				}
-				if(selectedValueInDropDown.getText().isEmpty()) {
-					log.info("Bed Option name= "+selectedValueInDropDown.getText());
-				}
-			}
 		}
 
+	}
+	public void fillNextOfKinDetails(String kname,String ename,String ephone,String cbcd,String ccdt ) {
+		try {
+			NEXT_OF_KIN_FROM_POP_UP.click();
+			log.info("kin details tab get selected");
+			
+			KIN_DETAIL_NAME.sendKeys(kname);
+			log.info("Enter kin detail name:"+kname);
+			
+			Copy_From_Present_Address.click();
+			log.info("Copy check box get selected");
+			
+			KIN_EMERGENCY_CONTACT_NAME.sendKeys(ename);
+			log.info("Enter emergency Patient name :"+ename);
+			
+			KIN_EMERGENCY_PHONE_NO.sendKeys(ephone);
+			log.info("Enter Kin Emergency Phone No :"+ephone);
+			
+			KIN_COUNSELLING_BILLING_COUNSELLING_DONE.sendKeys(cbcd);
+			log.info("Enter Clinical Counselling Done To :"+cbcd);
+			
+			KIN_CLINICAL_COUNSELLING_DONE_TO.sendKeys(ccdt);
+			log.info("Enter Clinical Counselling Done To :"+ccdt);
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void selectSaveButton() {
+		POP_UP_SAVE_BUTTON.click();
+		CLICK_ON_OK.click();
 	}
 
 }
-
